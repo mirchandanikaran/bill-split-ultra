@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bill Splitter</title>
 
-    <!-- PWA + Meta -->
+    <!-- 🌐 PWA Meta -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#0f172a" />
     <link rel="apple-touch-icon" href="/icons/icon-192.png" />
     <meta name="mobile-web-app-capable" content="yes" />
 
-    <!-- Analytics (optional, can remove if failing) -->
-    <script async defer data-domain="bill-split-ultra.vercel.app" src="https://plausible.io/js/plausible.js"></script>
+    <!-- 📈 Plausible Analytics (Advanced Setup) -->
+    <script defer data-domain="bill-split-ultra.vercel.app"
+      src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js">
+    </script>
+    <script>
+      window.plausible = window.plausible || function () {
+        (window.plausible.q = window.plausible.q || []).push(arguments)
+      }
+    </script>
 
+    <!-- ⚙️ Service Worker Registration -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log("Service worker registered:", reg.scope))
-            .catch(err => console.error("Service worker error:", err));
+            .then(reg => console.log("✅ Service worker registered:", reg.scope))
+            .catch(err => console.error("❌ Service worker error:", err));
         });
       }
     </script>
@@ -27,13 +35,17 @@
   <body>
     <div id="root"></div>
 
-    <!-- Install banner -->
-    <div id="install-banner" style="display:none;position:fixed;bottom:20px;left:20px;right:20px;background:#0f172a;color:white;padding:1em;border-radius:8px;z-index:1000;text-align:center;">
+    <!-- 📲 Install Prompt -->
+    <div id="install-banner"
+         style="display:none;position:fixed;bottom:20px;left:20px;right:20px;background:#0f172a;color:white;padding:1em;border-radius:8px;z-index:1000;text-align:center;">
       <span>Want to install this app?</span>
-      <button onclick="installApp()" style="margin-left:1em;padding:0.5em 1em;background:white;color:#0f172a;border:none;border-radius:4px;">Install</button>
+      <button onclick="installApp()"
+              style="margin-left:1em;padding:0.5em 1em;background:white;color:#0f172a;border:none;border-radius:4px;">
+        Install
+      </button>
     </div>
 
+    <!-- 📜 Install Prompt JS -->
     <script src="/install.js"></script>
-    <!-- ✅ No need to manually load CSS or JS here — Vite will inject -->
   </body>
 </html>
